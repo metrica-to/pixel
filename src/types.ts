@@ -5,6 +5,7 @@ export interface PixelTrackingData {
   event: string;
   category: string;
   referrer: string;
+  isTouchDevice: boolean;
 }
 
 export interface PixelTrackingPayload {

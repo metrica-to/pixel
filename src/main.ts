@@ -1,9 +1,37 @@
 import PixelTracker from './pixel-tracker';
 
 ((m, t) => {
+  const currentScriptUrl = import.meta.url;
+  const scripts = t.getElementsByTagName('script');
+  let currentScript = null;
+
+  for (let script of scripts) {
+    if (script.src === currentScriptUrl) {
+      currentScript = script;
+      break;
+    }
+  }
+
+  const ds = currentScript?.dataset;
+
+  if (!ds || !ds.siteId) {
+    console.error(
+      'Metrica-Pixel: You must have a valid data-siteid in your script tag.'
+    );
+    return;
+  }
+
+  let externalReferrer = '';
+  const ref = t.referrer;
+  if (ref && ref.indexOf(`${m.location.protocol}//${m.location.host}`) == 0) {
+    externalReferrer = ref;
+  }
+
   const path = m.location.pathname;
   console.log('Path', path);
-  let pixelTracker = new PixelTracker();
+  console.log('data-siteid', ds.siteId);
+
+  let pixelTracker = new PixelTracker(ds.siteId, externalReferrer);
   m._mtr = m._mtr || pixelTracker;
   pixelTracker.page(path);
 
