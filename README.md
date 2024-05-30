@@ -1,6 +1,6 @@
 # Metrica pixel
 
-Tracker for user inights and events
+Tracker for user insights and events
 
 ### Architecture
 
@@ -30,5 +30,5 @@ Tracker for user inights and events
 
 ### Read more
 
-[Design Decisions](docs/decisions.md)
+[Design Decisions](docs/decisions.md)  
 [How Tracking Works?](docs/how-tracking-works.md)
