@@ -27,7 +27,6 @@ export default class PixelTracker {
 
   private setSession(key: string, value: any) {
     key = `__mtr_${key}__`;
-
     localStorage.setItem(key, JSON.stringify(value));
   }
 
